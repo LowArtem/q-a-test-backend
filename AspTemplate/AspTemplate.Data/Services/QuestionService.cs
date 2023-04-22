@@ -32,10 +32,11 @@ public class QuestionService
         _questionRepository.Add(question);
         _questionRepository.SaveChanges();
 
-        var options = dto.Options.Select(o => new Option
+        var options = dto.Options.Select((o, i) => new Option
         {
             Description = o.Description,
-            QuestionId = question.Id
+            QuestionId = question.Id,
+            Value = i
         });
 
         _optionRepository.AddRange(options);
