@@ -23,7 +23,8 @@ public class Startup
         
         // Services can be added here
         services.AddTransient(typeof(UserService), typeof(UserService));
-        
+        services.AddTransient(typeof(AnswerService), typeof(AnswerService));
+        services.AddTransient(typeof(QuestionService), typeof(QuestionService));
         
         // Auto Mapper Configurations
         var mapperConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); });
