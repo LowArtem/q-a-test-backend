@@ -1,10 +1,10 @@
 ﻿namespace AspTemplate.Core.Dto.Main;
 
-public class RoomResponseDto
+public class RoomListResponseDto
 {
     public int Id { get; set; }
     
     public string Name { get; set; }
     
-    public List<int> QuestionIds { get; set; }
+    public int QuestionsCount { get; set; }
 }

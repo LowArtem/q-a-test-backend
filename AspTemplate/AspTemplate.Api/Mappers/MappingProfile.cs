@@ -22,8 +22,11 @@ public class MappingProfile : Profile
         CreateMap<AnswerRequestDto, Answer>();
         CreateMap<Answer, AnswerResponseDto>();
         CreateMap<RoomRequestDto, Room>();
-        CreateMap<Room, RoomResponseDto>()
+        CreateMap<Room, RoomListResponseDto>()
             .ForMember(dest => dest.QuestionsCount,
                 opt => opt.MapFrom(r => r.Questions.Count));
+        CreateMap<Room, RoomResponseDto>()
+            .ForMember(dest => dest.QuestionIds,
+                opt => opt.MapFrom(r => r.Questions.Select(q => q.Id)));
     }
 }

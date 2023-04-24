@@ -13,7 +13,6 @@ namespace AspTemplate.Api.Api.Main;
 [ApiController]
 [ApiVersion("1.0")]
 [SetRoute]
-[Authorize]
 public class AnswerController : ControllerBase
 {
     private readonly AnswerService _service;
@@ -31,7 +30,6 @@ public class AnswerController : ControllerBase
     [HttpPost]
     [SwaggerResponse(200)]
     [SwaggerResponse(500)]
-    [AllowAnonymous]
     public IActionResult CreateAnswers(List<AnswerRequestDto> requestDtos)
     {
         try

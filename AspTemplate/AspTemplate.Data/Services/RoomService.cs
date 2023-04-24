@@ -51,7 +51,10 @@ public class RoomService
     /// <exception cref="EntityNotFoundException"></exception>
     public RoomResponseDto GetRoom(int roomId)
     {
-        var room = _roomRepository.Get(roomId);
+        var room = _roomRepository.GetListQuery()
+            .Include(r => r.Questions)
+            .FirstOrDefault(r => r.Id == roomId);
+        
         if (room == null)
         {
             throw new EntityNotFoundException(typeof(Room));
@@ -65,13 +68,13 @@ public class RoomService
     /// </summary>
     /// <param name="userEmail"></param>
     /// <returns></returns>
-    public List<RoomResponseDto> GetRooms(string userEmail)
+    public List<RoomListResponseDto> GetRooms(string userEmail)
     {
         return _roomRepository.GetListQuery()
             .Include(r => r.User)
             .Include(r => r.Questions)
             .Where(r => r.User.Email == userEmail)
-            .Select(r => _mapper.Map<RoomResponseDto>(r))
+            .Select(r => _mapper.Map<RoomListResponseDto>(r))
             .ToList();
     }
 

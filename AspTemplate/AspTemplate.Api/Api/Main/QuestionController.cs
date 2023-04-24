@@ -52,6 +52,7 @@ public class QuestionController : ControllerBase
     [HttpGet("room/{roomId}")]
     [SwaggerResponse(200, "Успешно", typeof(List<QuestionResponseDto>))]
     [SwaggerResponse(500)]
+    [AllowAnonymous]
     public IActionResult GetQuestionByRoom([FromRoute] int roomId)
     {
         try
@@ -72,6 +73,7 @@ public class QuestionController : ControllerBase
     [HttpGet("{questionId}")]
     [SwaggerResponse(200, "Успешно", typeof(QuestionResponseDto))]
     [SwaggerResponse(500)]
+    [AllowAnonymous]
     public IActionResult GetQuestionById([FromRoute] int questionId)
     {
         try

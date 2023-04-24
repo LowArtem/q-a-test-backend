@@ -60,6 +60,7 @@ public class RoomController : ControllerBase
     [HttpGet("{roomId}")]
     [SwaggerResponse(200, "Комната", typeof(RoomResponseDto))]
     [SwaggerResponse(500, "Ошибка")]
+    [AllowAnonymous]
     public IActionResult GetRoom(int roomId)
     {
         try
@@ -82,7 +83,7 @@ public class RoomController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    [SwaggerResponse(200, "Комнаты", typeof(List<RoomResponseDto>))]
+    [SwaggerResponse(200, "Комнаты", typeof(List<RoomListResponseDto>))]
     [SwaggerResponse(500, "Ошибка")]
     public IActionResult GetRooms()
     {
