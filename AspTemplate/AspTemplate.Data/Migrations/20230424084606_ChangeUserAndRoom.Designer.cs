@@ -3,6 +3,7 @@ using System;
 using AspTemplate.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AspTemplate.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20230424084606_ChangeUserAndRoom")]
+    partial class ChangeUserAndRoom
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -203,12 +206,7 @@ namespace AspTemplate.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Rooms");
                 });
@@ -295,17 +293,6 @@ namespace AspTemplate.Data.Migrations
                     b.Navigation("Type");
                 });
 
-            modelBuilder.Entity("AspTemplate.Core.Model.Main.Room", b =>
-                {
-                    b.HasOne("AspTemplate.Core.Model.Auth.User", "User")
-                        .WithMany("Rooms")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("RoleUser", b =>
                 {
                     b.HasOne("AspTemplate.Core.Model.Auth.Role", null)
@@ -319,11 +306,6 @@ namespace AspTemplate.Data.Migrations
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("AspTemplate.Core.Model.Auth.User", b =>
-                {
-                    b.Navigation("Rooms");
                 });
 
             modelBuilder.Entity("AspTemplate.Core.Model.Main.Question", b =>

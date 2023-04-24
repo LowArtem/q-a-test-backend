@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 using AspTemplate.Core.Model._Base;
+using AspTemplate.Core.Model.Main;
 
 namespace AspTemplate.Core.Model.Auth;
 
@@ -20,25 +21,16 @@ public class User : BaseEntity
     [JsonIgnore]
     [XmlIgnore]
     public string PasswordHash { get; set; }
-    
-    /// <summary>
-    /// Имя
-    /// </summary>
-    public string FirstName { get; set; }
-    
-    /// <summary>
-    /// Фамилия
-    /// </summary>
-    public string LastName { get; set; }
-    
-    /// <summary>
-    /// Отчество
-    /// </summary>
-    public virtual string? MiddleName { get; set; }
-    
+
     /// <summary>
     /// Роли пользователя
     /// </summary>
     [JsonIgnore]
     public virtual ICollection<Role> UserRoles { get; set; }
+    
+    /// <summary>
+    /// Комнаты пользователя
+    /// </summary>
+    [JsonIgnore]
+    public virtual ICollection<Room> Rooms { get; set; } 
 }

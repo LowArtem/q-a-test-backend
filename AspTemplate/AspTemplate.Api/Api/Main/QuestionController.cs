@@ -69,7 +69,7 @@ public class QuestionController : ControllerBase
     /// </summary>
     /// <param name="questionId"></param>
     /// <returns></returns>
-    [HttpGet("id/{questionId}")]
+    [HttpGet("{questionId}")]
     [SwaggerResponse(200, "Успешно", typeof(QuestionResponseDto))]
     [SwaggerResponse(500)]
     public IActionResult GetQuestionById([FromRoute] int questionId)
@@ -77,6 +77,27 @@ public class QuestionController : ControllerBase
         try
         {
             return Ok(_service.GetQuestion(questionId));
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, $"Error: {e}");
+        }
+    }
+
+    /// <summary>
+    /// Удалить вопрос
+    /// </summary>
+    /// <param name="questionId">Id вопроса</param>
+    /// <returns></returns>
+    [HttpDelete("{questionId}")]
+    [SwaggerResponse(200, "Удалено")]
+    [SwaggerResponse(500, "Ошибка")]
+    public IActionResult RemoveQuestion(int questionId)
+    {
+        try
+        {
+            _service.RemoveQuestion(questionId);
+            return Ok();
         }
         catch (Exception e)
         {

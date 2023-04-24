@@ -19,21 +19,4 @@ public class RegisterDto
     /// </summary>
     [Required]
     public string Password { get; set; }
-    
-    /// <summary>
-    /// Имя
-    /// </summary>
-    [Required]
-    public string FirstName { get; set; }
-
-    /// <summary>
-    /// Отчество
-    /// </summary>
-    public string? MiddleName { get; set; }
-
-    /// <summary>
-    /// Фамилия
-    /// </summary>
-    [Required]
-    public string LastName { get; set; }
 }

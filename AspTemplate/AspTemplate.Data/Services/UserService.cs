@@ -52,9 +52,6 @@ public class UserService
         {
             Email = registerDto.Email,
             PasswordHash = passwordHash,
-            FirstName = registerDto.FirstName,
-            LastName = registerDto.LastName,
-            MiddleName = registerDto.MiddleName,
             UserRoles = new List<Role> { defaultRole! }
         };
 

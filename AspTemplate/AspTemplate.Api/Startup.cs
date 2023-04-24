@@ -25,6 +25,7 @@ public class Startup
         services.AddTransient(typeof(UserService), typeof(UserService));
         services.AddTransient(typeof(AnswerService), typeof(AnswerService));
         services.AddTransient(typeof(QuestionService), typeof(QuestionService));
+        services.AddTransient(typeof(RoomService), typeof(RoomService));
         
         // Auto Mapper Configurations
         var mapperConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); });

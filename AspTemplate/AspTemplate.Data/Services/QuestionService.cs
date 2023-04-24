@@ -60,4 +60,9 @@ public class QuestionService
             .Select(q => _mapper.Map<QuestionResponseDto>(q))
             .ToList();
     }
+
+    public void RemoveQuestion(int questionId)
+    {
+        _questionRepository.Remove(questionId);
+    }
 }
