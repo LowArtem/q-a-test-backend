@@ -46,16 +46,17 @@ public class AnswerController : ControllerBase
     /// <summary>
     /// Получить ответы
     /// </summary>
-    /// <param name="requestDtos"></param>
+    /// <param name="roomId">Id комнаты</param>
+    /// <param name="questionNumber">Id вопроса</param>
     /// <returns></returns>
-    [HttpGet("{questionId}")]
-    [SwaggerResponse(200, "успешно", typeof(List<AnswerResponseDto>))]
+    [HttpGet("{roomId}/{questionNumber}")]
+    [SwaggerResponse(200, "успешно", typeof(QuestionDashboardResponseDto))]
     [SwaggerResponse(500)]
-    public IActionResult GetAnswers(int questionId)
+    public IActionResult GetAnswers(int roomId, int questionNumber)
     {
         try
         {
-            return Ok(_service.GetAnswers(questionId));
+            return Ok(_service.GetAnswers(roomId, questionNumber));
         }
         catch (Exception e)
         {
