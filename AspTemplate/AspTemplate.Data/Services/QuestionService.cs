@@ -25,7 +25,7 @@ public class QuestionService
         var question = new Question
         {
             Title = dto.Title,
-            RoomId = 1,
+            RoomId = dto.RoomId,
             TypeId = 1
         };
 
